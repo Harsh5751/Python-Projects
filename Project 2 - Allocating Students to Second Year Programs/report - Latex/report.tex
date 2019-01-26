@@ -1,0 +1,205 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{listings}
+\usepackage{booktabs}
+
+\oddsidemargin 0mm
+\evensidemargin 0mm
+\textwidth 160mm
+\textheight 200mm
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+\title{Assignment 1 Report}
+\author{Harsh Patel patelh75}
+\date{\today}
+
+\begin {document}
+
+\maketitle
+
+The purpose of this report is to give a more in-depth insight of the test cases, note any assumptions or improvements in the program, 
+and comparing our module with the module of a selected partner.
+
+\section{Testing of the Original Program}
+
+The approach to testing the functionality of my modules was to create a function that would compare 
+the calculated output with the output returned by the code modules. It would display
+a message indicating if the output was correct or incorrect. Test cases for the modules consist
+of normal and boundary test cases. The first test case was a normal test case that tested 
+if the sorting function sorted the students based on their GPA in descending 
+order. The second test case was to discover how the program responded to sorting students if 
+they had the same GPA. This was an important test case as it can affect the allocation of students 
+who might have the same GPA and second year program selection. The result was that students appearing 
+near the top of the text file would be placed at the lower index of the sorted list when compared 
+with another student with the same GPA. The third test case was to ensure that a sorted list would stay 
+sorted. The fourth test case tested an empty list to check if the program would return any errors such as 
+not finding the key 'gpa' or not being able to find any lists of dictionaries. This test case did not return 
+any errors, but instead returned an empty list as expected. The next section of test cases tested the function responsible 
+for calculating the average GPA of a specific gender in the student dictionary. The first two test cases
+returned the average GPA of male or female students depending on gender chosen. The next two test cases were designed 
+to discover the result when no members of a specific gender were in the student list, and the program 
+tested for that specific gender's average GPA. The program terminated with a "ZeroDivisionError" as expected. 
+The function was modified such that a print message would be shown informing the user that no student of this specific 
+gender was present. The final section of test cases tested the function responsible for allocating students to their 
+second year program. The first test case was to test if the function resulted in the correct output when given a list 
+of student dictionaries, department capacities, and a list of free choice students. This function returns a dictionary 
+of departments, each assigned a list of student dictionaries that were allocated respectively. The second test case explored 
+the result of when all free choice students chose a specific program as their first choice, and the number of free choice 
+students assigned were more then the capacity of that specific program. This resulted in all free choice students being allocated 
+to that specific program. Any student without free choice selecting that specific program would not be allocated to their first 
+choice, and would be redirected to their second choice. The last test case tested an empty dictionary as an input to discover 
+any errors that could potentially be presented in a more user-friendly format. This test case returned an empty dictionary.
+
+This assignment required many assumptions dependant on the programmer as it was a natural language specification. The file of containing 
+student information is assumed to be formatted such that each student dictionary is on a new line, the student dictionary is formatted as 
+a python dictionary in the text file, and all information is present and spelled correctly for the keys and values of the student dictionary. 
+The file containing the department capacities is assumed to also be in python dictionary format with departments as keys and capacities as values. 
+Each department dictionary is assumed to be on a new line in the file. The GPA of the students is assumed to be rounded to two decimal places, 
+including when calculating the average GPA for a specific geneder. It is also assumed that free choice students will be allocated to their first 
+choice even if the capacity of that program has been filled. To avoid students not being allocated to any program, it is assumed that the total 
+capacity of all departments is more then the total number of students. Students with a GPA lower than or equal to 4.0 will not be allocated.
+
+\section{Results of Testing Partner's Code}
+
+The test cases tested with the partner's CalcModule did not run due to an error with the dictionary keys. Some key values defined in the partner's code were different
+then the key values defined in my code, such as I formatted MacID as "macId" while the partner's code has "macid". Due to these types of error, no test 
+cases were able to run because the program could not find the string "macid" in the text files and dictionaries, and therefore terminated.
+
+\section{Discussion of Test Results}
+
+\subsection{Problems with Original Code}
+While testing my testCalc module with the partner's CalcModule, I learned that the partner files defined the key values as it was written in the 
+assignment specification. The assignment specification defined MacID as "macid" in the format, and had the first letter of all departments as 
+lowercase. Analyzing these key errors, I was able to depict that my text files and modules specifically follow the key "macId" and had all department 
+names begin with an uppercase, which was not how it was formatted in the assignment specification. Small errors in different variations of how strings
+were formatted causes the program to return errors and terminate. This is a common issue with strings as it must be specified in a certain format or it will
+cause errors even if it's the same word. The solution to this issue would simply be to convert all strings to lowercase using the built in python .lower() function 
+enabling the program to run dependant upon spelling rather than string formatting. No matter how the user defined the specific keys, 
+they would all be converted to lowercase. Another problem with my code could arise from the specific formatting of my text files. The module can only 
+read from the files and run the functions if the text files are formatted in the same way as explained above in the report.  
+
+\subsection{Problems with Partner's Code}
+After fixing the issues with defining the keys in a specific format using the solution stated above, I was able to run the test cases with the 
+partner's CalcModule. The test cases executed without any errors because the partner's module also relied on the same formatting of the 
+text files as my module. The result of the test cases after fixing the issues was that it passed for some while failing for others. 
+The first test case involved normal sorting, and that test case passed the partner's CalcModule. The next test case involved sorting students 
+with the same GPA. This test case failed as the partner's CalcModule sorts students based on MacID first then GPA. The test cases for calculating the 
+average GPA also fails because the partner's CalcModule rounds the average GPA to three decimal places as opposed to my CalcModule which rounds to two 
+decimal places. Unless the average GPA of the specific gender is calculated exactly to two decimal places or one decimal places, the test case will 
+fail. When testing the test case for when no members of a specific gender are present, the partner's CalcModule simply returns 0.0 while my CalcModule 
+returns a message informing the user that no member from that gender is in the list. For that reason, those test cases also fail for the partner's code. 
+The Allocate function test cases also fail with the partner's code because the program sorts the students based on MacID first, then GPA, so the 
+order of the students in the list corresponding to the department key would not be in the same order. Lists, unlike dictionaries, are not random, so order 
+of the element is an important factor when testing equality. The partner's code would only work if only one student was allocated to each department, 
+and each student had a different first choice. Following that statement, the test case for normal allocation passed, but the test case where every free 
+choice student chose software as their first choice failed. Based on different assumptions made by the programmer throughout this assignment, test 
+cases are expected to fail.
+
+
+\section{Critique of Design Specification}
+The specification of this assignment required many assumptions to be made by the programmer such as the structure of the files,
+rounding the gpa of students, allocating students with 4.0 GPA, etc. This was a new approach to programming as many of the decisions relied on
+the programmer. There were many advantages to working through this kind of assignment. It gives a representation of how problems in the real world
+are solved. In the software industry a problem is simply presented with no specific specification, and requires the programmer to think of the many
+approaches and find the most efficient one to implement. Decision making and assumptions is important to solving problems with code as this allows 
+us to develop a thinking to solve many errors, and looking at the program from the perspective of the user. The area that I think needs improvement or
+needs to added in the assignment is a task that gets the students thinking about how they can make the program more efficient. This could include simply
+talking about structures of files, removing redundant functions, having less for loops, etc. For example, the entire file for free choice students can be 
+removed and a key of free choice can be added to the student dictionary with options 'Yes' or 'No' as values. This would allow the program to be more efficient as it 
+would have to read from one less file, and would result in removing one entire function. The allocate function would have one less parameter, and less code 
+overall if the free choice selection was included in the main file of students. 
+%\newpage
+
+\section{Answers to Questions}
+
+\begin{enumerate}[(a)]
+
+\item To make the average function more general/flexible, it should have the feature to calculate the average GPA of all members in the program. 
+Along with the string "male" and "female", it should accept the string "All" that would instruct the function to calculate the average GPA of all 
+students. The function would be specified as average(L, "All"). The average function can also have the feature to calculate the average GPA of 
+students allocated in a specific department. A department string with the gender string would instruct the program to calculate 
+the average GPA of male, female, or all students allocated in that program to determine more information such as the cut-off for the year. The "None" 
+string would instruct the function to get the average GPA of all students, not specific only to department. The function would be specified as 
+average(L, "Male", "Software") or average(L, "All", "None") while L represents a list of students which would be used for the allocate function 
+invoked in the average function to get the allocation details. The sort function can be more general by having the option to sort by more
+parameters such as choosing to sort by "macId", "gpa", "lname", "fname", etc. The function would be specified as sort(S, "macId").  
+
+\item Aliasing is when one variable is assigned to another such that both variables refer to the same object. In this context it would mean that
+the same list of student dictionaries are assigned to two different variables, and since lists are mutable types, a change to the list assigned to 
+one variable causes the same change to occur in the list assigned to the other variable. Since a dictionary is also a mutable type, aliasing is a problem, 
+as it can cause changes to its keys and values, similar to list elements. A potential strategy to guard against this is to use the python built in 
+copy function. The resulting copyDict = oldDict.copy() would create a copy of the original dictionary while preserving the old one in a different 
+variable. The solution for aliasing lists is to clone it using slice method new = old[:] which will create a new list with the same data.
+
+\item ReadAllocationData.py could have been tested in testCalc.py if the text files were used for testing in which the functions of CalcModule would 
+require an input created by the text files containing the data. Some isolated test cases to ensure ReadAllocationData functioned correctly could 
+have been simply reading information from the text files given and determining if the returned result was correct. Other boundary test cases would 
+include empty lists, or files of different formats to potentially build stronger code that can solve such problems. CalcModule was selected over 
+ReadAllocationData to be tested because CalcModule uses all of the functions from ReadAllocationData to create inputs for its functions, therefore it 
+would already be tested when testing CalcModule if text files were used to test it. This way an error in ReadAllocationData would be caught and made 
+obvious almost instantly. For this reason, CalcModule would be the logical choice to be tested.
+
+\item Strings are case sensitive, and this property of strings requires it to be formatted correctly or it will cause an error as seen when testing 
+the partner's CalcModule with my testCalc. A better approach to this would be to use a set and refer to the set element when calculating the average 
+GPA for a specific gender. This would not cause any errors and issues of strings being case sensitive because the strings, "male" and "female", are part
+of the predefined set {male, female}, and simply accessed.
+
+\item Other ways of implementing mathematical tuples in python could be to use classes instead of dictionaries. I would reccomend changing the 
+data structure used in the modules to a student class. A student class would include all the general information for students, and the program would
+simply have to assign students to this class. Each student would have their own class, and accessors would be used to access the information from the 
+student class which would be much easier then iterating over a list to find the student and the his/her information. Invoking the student class by a 
+specific identifier for each student would result in a more efficient and organized program. 
+
+\item If the data structure inside the custom class changes from a list to a tuple, CalcModule would not need to be modified. The information stored as
+a tuple are accessed by element as in a list. The only notable difference between a list and tuple is that a tuple is immutable which means that the elements
+cannot be modified, and tuple itself cannot be modified. Elements cannot be deleted or removed from a tuple, nor can they be appended to a tuple as it uses
+a fixed memory. Therefore, a tuple behaves similar to a list, but they are immutable, but that does not impact the CalcModule as we are only accessing
+information stored in the tuple. If the custom class for students uses tuples instead of lists, the CalcModule would still not need to be changed for the same
+explanation as above.
+
+\end{enumerate}
+
+\newpage
+
+\lstset{language=Python, basicstyle=\tiny, breaklines=true, showspaces=false,
+  showstringspaces=false, breakatwhitespace=true}
+%\lstset{language=C,linewidth=.94\textwidth,xleftmargin=1.1cm}
+
+\def\thesection{\Alph{section}}
+
+\section{Code for ReadAllocationData.py}
+
+\noindent \lstinputlisting{../src/ReadAllocationData.py}
+
+\newpage
+
+\section{Code for CalcModule.py}
+
+\noindent \lstinputlisting{../src/CalcModule.py}
+
+\newpage
+
+\section{Code for testCalc.py}
+
+\noindent \lstinputlisting{../src/testCalc.py}
+
+\newpage
+
+\section{Code for Partner's CalcModule.py}
+
+\noindent \lstinputlisting{../partner/CalcModule.py}
+
+\newpage
+
+\section{Makefile}
+
+\lstset{language=make}
+\noindent \lstinputlisting{../Makefile}
+
+\end {document}

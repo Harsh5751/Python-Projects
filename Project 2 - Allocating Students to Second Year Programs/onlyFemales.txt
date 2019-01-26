@@ -1,0 +1,3 @@
+{'macId' : 'jen2', 'fname' : 'Jenny', 'lname' : 'Jen', 'gender' : 'female', 'gpa' : 11.2, 'choices' : ['Chemical', 'Civil', 'Engphys']}
+{'macId' : 'jessie1', 'fname' : 'Jes', 'lname' : 'Jessie', 'gender' : 'female', 'gpa' : 7.5, 'choices' : ['Civil', 'Software', 'Materials']}
+{'macId' : 'pam4', 'fname' : 'Pammy', 'lname' : 'Pam', 'gender' : 'female', 'gpa' : 8.2, 'choices' : ['Engphys', 'Electrical', 'Civil']}

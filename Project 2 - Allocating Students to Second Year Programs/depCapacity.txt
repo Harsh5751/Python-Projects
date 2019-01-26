@@ -1,0 +1,7 @@
+{"Software" : 4}
+{"Electrical" : 6}
+{"Materials" : 5}
+{"Engphys" : 4}
+{"Chemical" : 5}
+{"Mechanical": 5}
+{"Civil" : 4}

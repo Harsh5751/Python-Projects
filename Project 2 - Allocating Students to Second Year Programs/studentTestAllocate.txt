@@ -1,0 +1,10 @@
+{'macId' : 'patelh75', 'fname' : 'Harsh', 'lname' : 'Patel', 'gender' : 'male', 'gpa' : 10.6, 'choices' : ['Software', 'Mechanical', 'Engphys']}
+{'macId' : 'brain8', 'fname' : 'Shawn', 'lname' : 'Brain', 'gender' : 'male', 'gpa' : 8.5, 'choices' : ['Software', 'Chemical', 'Materials']}
+{'macId' : 'cody9', 'fname' : 'Cody', 'lname' : 'Codes', 'gender' : 'male', 'gpa' : 9.2, 'choices' : ['Software', 'Engphys', 'Chemical']}
+{'macId' : 'jen2', 'fname' : 'Jenny', 'lname' : 'Jen', 'gender' : 'female', 'gpa' : 11.2, 'choices' : ['Software', 'Civil', 'Engphys']}
+{'macId' : 'jessie1', 'fname' : 'Jes', 'lname' : 'Jessie', 'gender' : 'female', 'gpa' : 7.5, 'choices' : ['Software', 'Engphys', 'Materials']}
+{'macId' : 'pam4', 'fname' : 'Pammy', 'lname' : 'Pam', 'gender' : 'female', 'gpa' : 8.2, 'choices' : ['Engphys', 'Electrical', 'Civil']}
+{'macId' : 'kenway1', 'fname' : 'Edward', 'lname' : 'Kenway', 'gender' : 'male', 'gpa' : 9.8, 'choices' : ['Electrical', 'Engphys', 'Chemical']}
+{'macId' : 'ethab60', 'fname' : 'Ben', 'lname' : 'Etha', 'gender' : 'male', 'gpa' : 4.0, 'choices' : ['Software', 'Electrical', 'Engphys']}
+{'macId' : 'grande4', 'fname' : 'Ariana', 'lname' : 'Grande', 'gender' : 'female', 'gpa' : 9.5, 'choices' : ['Materials', 'Chemical', 'Engphys']}
+{'macId' : 'Jacky3', 'fname' : 'Jack', 'lname' : 'Jacky', 'gender' : 'male', 'gpa' : 7.2, 'choices' : ['Software', 'Electrical', 'Engphys']}

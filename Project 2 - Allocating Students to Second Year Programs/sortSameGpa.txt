@@ -1,0 +1,4 @@
+{'macId' : 'patelh75', 'fname' : 'Harsh', 'lname' : 'Patel', 'gender' : 'male', 'gpa' : 10.5, 'choices' : ['Software', 'Mechanical', 'Engphys']}
+{'macId' : 'brain8', 'fname' : 'Shawn', 'lname' : 'Brain', 'gender' : 'male', 'gpa' : 8.5, 'choices' : ['Software', 'Chemical', 'Materials']}
+{'macId' : 'cody9', 'fname' : 'Cody', 'lname' : 'Codes', 'gender' : 'male', 'gpa' : 10.5, 'choices' : ['Mechanical', 'Engphys', 'Chemical']}
+{'macId' : 'grande4', 'fname' : 'Ariana', 'lname' : 'Grande', 'gender' : 'female', 'gpa' : 8.5, 'choices' : ['Materials', 'Chemical', 'Engphys']}
