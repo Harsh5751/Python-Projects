@@ -156,12 +156,11 @@ simply have to assign students to this class. Each student would have their own 
 student class which would be much easier then iterating over a list to find the student and the his/her information. Invoking the student class by a 
 specific identifier for each student would result in a more efficient and organized program. 
 
-\item If the data structure inside the custom class changes from a list to a tuple, CalcModule would not need to be modified. The information stored as
-a tuple are accessed by element as in a list. The only notable difference between a list and tuple is that a tuple is immutable which means that the elements
-cannot be modified, and tuple itself cannot be modified. Elements cannot be deleted or removed from a tuple, nor can they be appended to a tuple as it uses
-a fixed memory. Therefore, a tuple behaves similar to a list, but they are immutable, but that does not impact the CalcModule as we are only accessing
-information stored in the tuple. If the custom class for students uses tuples instead of lists, the CalcModule would still not need to be changed for the same
-explanation as above.
+\item If the student's preferred choices were listed as a different data structure, the CalcModule would need to be modified to account for accessing the
+information inside the new data structure as it is not necessarily accessed the same way as a list. This result would be different if a custom class
+was written for students, and CalcModule was modified accordingly. If the data structure inside the custom class changes, the CalcModule would not need to be modified. 
+The methods inside the custom class are accessing the information and returning the choices from the data structure. CalcModule does not access this information required, 
+but instead uses the returned result, so it does not need to be modified to account for the change in data structure of the custom class.
 
 \end{enumerate}
 
