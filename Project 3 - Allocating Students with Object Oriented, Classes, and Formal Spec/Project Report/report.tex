@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{listings}
+\usepackage{booktabs}
+
+\oddsidemargin 0mm
+\evensidemargin 0mm
+\textwidth 160mm
+\textheight 200mm
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+\title{Assignment 2 Report}
+\author{Harsh Patel patelh75}
+\date{\today}
+
+\begin {document}
+
+\maketitle
+
+The purpose of this report is to give a more in-depth insight of the test cases, note any assumptions or improvements in the program, 
+and comparing our module with the module of a selected partner.
+
+\section{Testing of the Original Program}
+
+The approach to testing the functionality of the modules was to create test cases for the abstract data types being tested, and run the testAll.py file
+through pytest unit testing. Running it through pytest would display the number of test cases failed, passed, and total amount of tests that were compiled.
+Test cases for the modules consist of normal and boundary test cases. When testing my modules with pytest, all 35 test cases passed with an overall coverage of
+88\%. The first module that was tested was SeqADT.py. The first test case for this module was to test the start() function and ensure it printed a none type instead
+of printing the value of i, which is the index, since this function had no return type. The subsequent test cases tested the functionality of the next() function. The first
+two normal test cases would call the next() function to test if the first element, s[0], would be returned when next() was called once, and if the second element was returned
+when next() was called twice. These first two test cases tested the basic functionality of the next() function. The third test case for this module tested the StopIteration exception
+for the next() function. If next() was called too many times, such that the index would be equal or greater then the length of the sequence, the exception should be raised. This test cases
+was important as it would inform the user of the issue, and to test that the exception should only be raised if that specific condition was met. The final test case for the next() function
+was to pass an empty sequence and call next() to test the result returned. This raised the StopIteration exception as expected. The last few test cases for SeqADT.py module tested the end() function.
+The first two test case for the end() function tested if the index, i, was referencing the end of the sequence, that is length of the sequence - 1. In the first test case, next() was called to increment i,
+but not enough times to reach the end of the sequence. This test returned a boolean False as expected when end() was called, indicating that index, i, was not at the end of the sequence. The second test case called the next() function
+till the index was pointing to the end of the sequence. This test returned a boolean True representing that the user iterated to the end of the list. The third test case for this function
+tested what would happen if the index i went over the length of the sequence to test if a boolean is returned or an exception from the next() function is raised. The exception, StopIteration, was raised for this test case.
+The final test case tested an empty sequence, and when end() was called, it returned a boolean value of True. The second module tested was DCapALst.py. The first two test cases tested the \textit{add} function. The first test case was a normal
+test case that would add a department and its corresponding capacity to the sequence. The next test case checked if an exception, KeyError, was raised if the same department was being added again to the sequence. This was important to test if the 
+exception was raised correctly as if it was not raised then adding the same department again would cause more errors in the allocation steps. The following two test cases test the \textit{remove} function.
+The first test case for this function is a normal test case that removes a department and its corresponding capacity that are in the sequence. The next test case tests if the exception, KeyError, is 
+raised if the department being removed is not present in the sequence. The next two test cases test the \textit{elm} function. This function has no exceptions, but simply returns a boolean value representing if 
+the department is in the sequence or not. The test cases for this function returned true if the department being tested for was in the sequence, and false otherwise. The last function being tested for this module was the 
+\textit{capacity} function. The test case for this function accepted a department name and would return the corresponding capacity, otherwise a KeyError raised if the department was not in the sequence or if an invalid input
+such as an int, float, or string was inputted as a parameter. The last module being tested is the SALst.py module. The first few test cases for the functions \textit{add}, \textit{remove}, \textit{elm}, and \textit{info} follow
+the same test logic as the \textit{add}, \textit{remove}, \textit{elm}, and \textit{capacity} functions from DCapALst.py respectively, except using student's macid and information. The following test cases tested the sort function.
+The first test case for this function accepted a filter condition and tested to see if the result matched the filtered result which could be anything from a gpa condition, a student having free choice, gender, etc. The second test case
+tested another filter condition to gain assurance that the function was able to read the different filter conditions. The next section of test cases tested the function responsible 
+for calculating the average GPA of a specific gender in the sequence of student information. The first two test cases returned the average GPA of male or female students depending on gender chosen by the lambda filter. The next two test cases were designed 
+to discover the result when no members of a specific gender were in the student list, and the program tested for that specific gender's average GPA. This would raise the exception, ValueError, indicating that the gender is not present as a value of the student
+information tuple, therefore no members of this specific gender are present. The final section of test cases for this module tested the allocate function. The first test case was a normal allocation of students to their choices with each student having a different first
+choice, and being allocated. The result was tested through comparing the length of the allocation list to the result expected. The second test case tested the result of when every faculty was full or had 0 capacity in which
+case the students wouldn't be allocated to any of their choices. An exception of RuntimeError was raised as expected. The last test case tested if a student would be allocated to their second choice, if their first choice was full. 
+No errors were raised when unit testing as all functions were individually being tested in the coding process itself. Therefore, no problems were uncovered when testing.
+
+\section{Results of Testing Partner's Code}
+
+The test cases tested with the partners modules resulted in 29 test cases passed, and 6 test cases failed. The test cases that passed tested for boolean values, raising exceptions, 
+returning an average, returning a sorted array, or testing the length of the allocated list after allocation. The test cases that failed were the ones that asserted an equivalence statement
+that would test the format of the sequence after performing a function such as add. For example, if s.add(DeptT.software, 5) is called, then the assert statement would test if s.s == [\{"dept":"software", "cap":5\}].
+The issue with this is that the partner did not use the same format as I did to store the information, therefore the format of the sequences in each module were different causing the test to fail. The assertion statements that would
+also access information, such as getting macid or student info, also failed as the format of the sequences are different, then the code needed to access the information would also 
+be different. A simple solution to this issue is to assert on boolean statements. For example, if s.add(DeptT.software, 5) is called, then the \textit{elm} function can be used to return a boolean to check if the department was added.
+In this way assert True == True can be used to test it. To check for the capacity, "if s.capacity(d)" can be used to either print the result or return a boolean. Using this strategy, failed tests caused by 
+formatting assumptions of sequences can be avoided. Other test cases which required us to make no assumptions about formatting, returned exceptions, boolean values, or specific formatted objects all resulted in the test cases passing. 
+Another test case that failed was an error in my code, in which I raised a ValueError instead of a KeyError in the \textit{info} function. This resulted in a test case failing as the partner's code raised a KeyError as specified in the assignment specification.
+
+
+\section{Critique of Given Design Specification}
+
+As opposed to the natural language specification, the mathematical specification did not require the programmer to make many assumptions as most
+guidelines for the modules and functions were specific in the task required to be completed. Major assumptions that were part of the natural language specification
+were also explicitly stated in this assignment. The only assumptions required for this assignment was the structure of the sequences and tuples in the modules. The advantage 
+of this specification is that it is very specific, stating accurately on what the user expects for the behavior of the program. Reading mathematical specification is also an effective
+use to express specific details for implementation in a concise way instead of explaining using many sentences and paragraphs. The disadvantage of this type of design specification is that
+it doesn't allow the programmer to be creative or implement more effective ways to complete the task. For this reason, I feel this specification should have a section in which the programmer 
+can reflect upon the functions and implementation instructions used, and suggest more effective implementation techniques. The development of this type of thinking is important in the software 
+industry.
+
+
+\section{Answers}
+
+\begin{enumerate}
+
+\item The natural language of A1 required the programmer to make many assumptions and implement the modules based on those assumptions. The natural language specification
+heavily depended on the decisions of the programmer such as format of the text files being read, rounding the gpa of students, etc. There were many advantages to working through this kind of assignment. It gives a representation of how problems in the real world
+are solved. In the software industry a problem is simply presented with no specific specification, and requires the programmer to think of the many
+approaches and find the most efficient one to implement. Decision making and assumptions is important to solving problems with code as this allows 
+us to develop a thinking to solve many errors, and looking at the program from the perspective of the user. The formal specification did not require the programmer to make
+many assumptions or implementation decisions. The programmer has to follow the implementation instructions as stated such as mathematical specifications for the functions,
+return types, and exceptions raised. The advantage of the mathematical specification is that it is an efficient way to specifically state the implementation details for the programmer as 
+opposed to writing paragraphs and sentences to express the details such as in the natural language specification. The disadvantage of a formal specification is that it doesn't give the programmer
+the freedom to implement more efficient solutions to the given problem, and it does not allow the programmer to develop the thinking of independently building a program from scratch based on best
+assumptions and efficient implementation techniques. 
+
+\item The assumption that the gpa will be between 0 and 12.0 can be changed to an exception by having a function to check if the gpa is in the range of 0 to 12.0. If that condition is satisfied, then
+a float of the gpa is returned, but if the condition is not satisfied, then a ValueError can be returned. The student record type would need to modified from gpa : float to gpa : checkGpa(float). 
+
+\item The documentation can be modified such that the DCapALst module can be removed as SALst shares its similar functions. The \textit{init} function of SALst can accomodate 
+to initialize both the sequence of DCapALst and SALst assigned to different variables such as d and s, respectively. The other similar functions would simply need to accept a third
+parameter indicating the sequence to be accessed. For example add(a, b, s) for student info sequence of SALst and add(a, b, d) for department sequence. The capacity and info function
+are also very similar, and a simple name change to something more general is required if we implement the following changes stated above. In this way, the DCapALst can be removed from the documentation
+and merged with SALst since they share similar functions.
+
+\item A2 is more general then A1 in terms of the implementation and functions. The sort function in A1 was only performing sorts based on gpa in descending order accepting all students in the list, even the 
+ones that don't meet certain requirements such as having a gpa over 4.0. The sort function in A2 is more general. It still sorts based on descending gpa of students, but the function is now able accept a filter
+condition that returns a sorted list of students that pass the filter condition. For example, if we want students that have free choice and a gpa of 4.0 or greater, students that are only male or female, students with 
+software as their first choice, etc. Any filter condition can be set based on the tuple of SInfoT. The average function in A1 only calculated the average gpa of male or female students selectively. The A2 average function
+has filter condition which can allow calculating the average gpa of males, females, both genders, males in a specific program, females in a specific program, etc. Any filter condition can be passed in to calculate the gpa of 
+any group of students. In this way, both sort and average have become very general as they are not limited to only one specific task or condition.
+
+\item The advantage of representing the list of choices for each student by a custom object, SeqADT, over a regular list is that the functions of SeqADT
+are very useful when allocating students. Having the student choices be of type SeqADT allows the programmer to have access to the functions used to iterate over a list, 
+check if the end of the list is reached, and reset the iterator, i to 0 without explicitly coding those functions in the allocate function resulting in more efficient code.
+
+
+\item The advantage of enums over strings is that a string is case sensitive and relies on spelling while an enum is treated more as a constant, so it can't be misspelled without raising an error. A
+typo in a string is not caught by the compiler, but rather in runtime while typos in enums are caught by the compiler. Enums are also known to be more memory efficient then strings. 
+The macids specification did not implement an enum because macids are unique for each student and can't be represented as a constant such as the set of gender, male and female, or set of departments.
+If macids were to be represented as an enum then the programmer would have to include all the unique macids of students in code in the enum class for it, and assign each of it a unique value. This would
+take too much time, making the use of an enum in this case redundant as it would become very long as the list of students is expected to be long.
+\end{enumerate}
+
+\newpage
+
+\lstset{language=Python, basicstyle=\tiny, breaklines=true, showspaces=false,
+  showstringspaces=false, breakatwhitespace=true}
+%\lstset{language=C,linewidth=.94\textwidth,xleftmargin=1.1cm}
+
+\def\thesection{\Alph{section}}
+
+\section{Code for StdntAllocTypes.py}
+
+\noindent \lstinputlisting{../src/StdntAllocTypes.py}
+
+\newpage
+
+\section{Code for SeqADT.py}
+
+\noindent \lstinputlisting{../src/SeqADT.py}
+
+\newpage
+
+\section{Code for DCapALst.py}
+
+\noindent \lstinputlisting{../src/DCapALst.py}
+
+\newpage
+
+\section{Code for AALst.py}
+
+\noindent \lstinputlisting{../src/AALst.py}
+
+\newpage
+
+\section{Code for SALst.py}
+
+\noindent \lstinputlisting{../src/SALst.py}
+
+\newpage
+
+\section{Code for Read.py}
+
+\noindent \lstinputlisting{../src/Read.py}
+
+\newpage
+
+\section{Code for {\tt test\_All.py}}
+
+\noindent \lstinputlisting{../src/test_All.py}
+
+\newpage
+
+\section{Code for Partner's SeqADT.py}
+
+\noindent \lstinputlisting{../partner/SeqADT.py}
+
+\newpage
+
+\section{Code for Partner's DCapALst.py}
+
+\noindent \lstinputlisting{../partner/DCapALst.py}
+
+\newpage
+
+\section{Code for Partner's SALst.py}
+
+\noindent \lstinputlisting{../partner/SALst.py}
+
+\end {document}
