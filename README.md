@@ -1,2 +1,2 @@
 # Python-Projects
-Python Projects and Major Labs
+Mini Python Projects to demonstrate and apply skills
